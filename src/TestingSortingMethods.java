@@ -37,6 +37,7 @@ public class TestingSortingMethods {
         // Copy backup array back to main array to make sure we're sorting the same unsorted array every time
         System.arraycopy(backupArr, 0, mainArr, 0, size);
 
+
         // Call header method
         printFooter();
 
@@ -128,6 +129,46 @@ public class TestingSortingMethods {
 
         // Return calculated timer
         return insertionTimer;
+    }
+
+    // Sort Array using Merge-Sort and return execution time
+    public static <T extends Comparable<? super T>> long mergeSort(T[] s, int n) {
+        // Start timer
+        long startTimer = System.nanoTime();
+
+        // Code for Merge Sort which was derived from algorithm provided by professor
+
+        // Array already sorted
+        if (n < 2) {
+            // End timer
+            long endTimer = System.nanoTime();
+            long quickSortTimer = endTimer - startTimer;
+
+            // Return calculated time
+            return quickSortTimer;
+        }
+        int mid = n / 2;
+        // Copies the specified range of the specified array into a new array
+        T[] l = Arrays.copyOfRange(s, 0, mid);
+        T[] r = Arrays.copyOfRange(s, mid, n);
+
+        // Recursive calls
+        mergeSort(l, l.length);
+        mergeSort(r, r.length);
+
+        // Merge sorted halves back into original
+        int i = 0, j = 0;
+        while (i + j < s.length) {
+            if (j == r.length || (i < l.length && l[i].compareTo(r[j]) < 0)) {
+                s[i + j] = l[i++];
+            }
+            else {
+                s[i + j] = r[j++];
+            }
+        }
+
+        // End timer and return calculated time
+        return System.nanoTime() - startTimer;
     }
 
     // Print footer
