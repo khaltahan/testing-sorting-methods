@@ -102,6 +102,34 @@ public class TestingSortingMethods {
         return bubbleTimer;
     }
 
+    // Sort Array using Insertion-Sort and return execution time
+    public static < T extends Comparable <? super T >> long insertionSort(T[] a) {
+        // Start timer
+        long startTimer = System.nanoTime();
+
+        // Code for Insertion Sort which was derived from algorithm provided by professor
+        T temp;
+        T key;
+        for(int i = 1 ; i < a.length; i++){
+            key = a[i];
+            int j = i - 1;
+            while(j >= 0 && key.compareTo(a[j]) < 0) {
+                temp = a[j + 1];
+                a[j+1] = a[j];
+                a[j] = temp;
+                j--;
+            }
+        }
+
+        // End timer
+        long endTimer = System.nanoTime();
+        // Calculate timer
+        long insertionTimer = endTimer - startTimer;
+
+        // Return calculated timer
+        return insertionTimer;
+    }
+
     // Print footer
     public static void printFooter() {
         // Format the date output
