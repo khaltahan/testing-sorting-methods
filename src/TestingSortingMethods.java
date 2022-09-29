@@ -77,6 +77,31 @@ public class TestingSortingMethods {
         return selectionTimer;
     }
 
+    // Sort Array using Bubble-Sort and return execution time
+    public static < T extends Comparable <? super T >> long bubbleSort(T[] a) {
+        // Start timer
+        long startTimer = System.nanoTime();
+
+        // Code for Bubble Sort which was derived from algorithm provided by professor
+        for (int i = 1; i < a.length; i++) {
+            for(int j = 0; j < a.length - 1; j++) {
+                if(a[j].compareTo(a[j + 1]) > 0) {
+                    T temp = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = temp;
+                }
+            }
+        }
+
+        // End timer
+        long endTimer = System.nanoTime();
+        // Calculate timer
+        long bubbleTimer = endTimer - startTimer;
+
+        // Return calculated time
+        return bubbleTimer;
+    }
+
     // Print footer
     public static void printFooter() {
         // Format the date output
