@@ -171,6 +171,54 @@ public class TestingSortingMethods {
         return System.nanoTime() - startTimer;
     }
 
+    // Sort Array using Quick-Sort and return execution time
+    public static <T extends Comparable<? super T>> long quickSort(T[] s, int a, int b) {
+        // Start timer
+        long startTimer = System.nanoTime();
+
+        // Array already sorted
+        if (a >= b){
+            return (System.nanoTime() - startTimer);//how long it took
+        }
+
+        // Declaring pivot and pointers that will surround it
+        int leftPointer = a;
+        int rightPointer = b;
+        T pivot = s[(a + b)/2];
+        T temp;
+
+        // Scan until leftPointer is smaller than or equal to rightPointer
+        while (leftPointer <= rightPointer) {
+            while(s[leftPointer].compareTo(pivot) < 0) {
+                leftPointer++;
+            }
+            while(s[rightPointer].compareTo(pivot) > 0) {
+                rightPointer--;
+            }
+            // If pointer do not intersect, swap elements and shrink the pointer range
+            if (leftPointer <= rightPointer){
+                if (leftPointer != rightPointer) {
+                    // Swapping elements
+                    temp = s[leftPointer];
+                    s[leftPointer] = s[rightPointer];
+                    s[rightPointer] = temp;
+                }
+                // Shrink range
+                leftPointer++;
+                rightPointer--;
+            }
+        }
+        //sort the segments recursively, until the whole array is sorted:
+        if(a < rightPointer){
+            quickSort(s,a,rightPointer);
+        }
+        if(leftPointer < b){
+            quickSort(s, leftPointer, b);
+        }
+
+        return (System.nanoTime() - startTimer);
+    }
+
     // Print footer
     public static void printFooter() {
         // Format the date output
