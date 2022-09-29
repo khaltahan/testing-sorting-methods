@@ -50,6 +50,33 @@ public class TestingSortingMethods {
         System.out.println("*******************************************************\n");
     }
 
+    // Sort Array using Selection-Sort and return execution time
+    public static <T extends Comparable <? super T>>long selectionSort (T [] a) {
+        // Start timer
+        long startTimer = System.nanoTime();
+
+        // Code for Selection Sort which was derived from algorithm provided by professor
+        for (int i = 0; i < a.length; i++) {
+            int index = i;
+            for (int j = i + 1; j < a.length; j++) {
+                if (a[index].compareTo(a[j]) > 0){
+                    index = j;
+                }
+            }
+            T smallerNumber = a[index];
+            a[index] = a[i];
+            a[i] = smallerNumber;
+        }
+
+        // End timer
+        long endTimer = System.nanoTime();
+        // Calculate timer
+        long selectionTimer = endTimer - startTimer;
+
+        // Return calculated time
+        return selectionTimer;
+    }
+
     // Print footer
     public static void printFooter() {
         // Format the date output
