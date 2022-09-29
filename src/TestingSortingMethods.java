@@ -37,6 +37,15 @@ public class TestingSortingMethods {
         // Copy backup array back to main array to make sure we're sorting the same unsorted array every time
         System.arraycopy(backupArr, 0, mainArr, 0, size);
 
+        // Call all the sorting methods and print out the data
+        // We are multiplying by 0.000001 in order to change to milliseconds
+        System.out.println("Testing execution time of different sorting algorithms for sorting 50000 random numbers: ");
+        System.out.printf("Collections' Sorting Time: %.2f milliseconds\n", collectionsTimer * 1E-6);
+        System.out.printf("My Selection-Sort Time: %.2f milliseconds\n", selectionSort(mainArr) * 1E-6);
+        System.out.printf("My Bubble-Sort Time: %.2f milliseconds\n", bubbleSort(mainArr) * 1E-6);
+        System.out.printf("My Insertion-Sort Time: %.2f milliseconds\n", insertionSort(backupArr) * 1E-6);
+        System.out.printf("My Merge-Sort Time: %.2f milliseconds\n", mergeSort(mainArr, mainArr.length)  * 1E-6);
+        System.out.printf("My Quick-Sort Time: %.2f milliseconds\n", quickSort(mainArr, 0, mainArr.length - 1) * 1E-6);
 
         // Call header method
         printFooter();
